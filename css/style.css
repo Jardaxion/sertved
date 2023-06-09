@@ -847,8 +847,7 @@ ul:not(.notDot) li::after
 {
     width: 100%;
     max-width: 546px;
-    padding-top: 28px;
-    padding-bottom: 39px;
+    padding: 39px 0;
 }
 .usluga__title
 {
