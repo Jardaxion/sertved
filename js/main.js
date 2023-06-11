@@ -31,10 +31,15 @@ $(document).ready(() => {
     new Swiper('.etap__content-wrapper', {
         loop: false,
         spaceBetween: 17,
-        slidesPerView: 3,
+        slidesPerView: 1,
         navigation: {
             nextEl: '.etap__arrow-next',
             prevEl: '.etap__arrow-back'
+        },
+        breakpoints:{
+            960:{
+                slidesPerView: 3,
+            }
         }
     })
 
@@ -80,6 +85,25 @@ $(document).ready(() => {
         }).then(() => {
             openModal('thanks');
         });
+    })
+
+    $('.header__menu-button').on('click', function(e) {
+        $(this).toggleClass('active');
+        $('.header__mobileMenu').toggleClass('active');
+        if($(this).hasClass('active')){
+            $('.header').addClass('black');
+        } else {
+            $('.header').removeClass('black');
+        }
+    })
+    $('.header__mobileMenu-link').on('click', function(e){
+        $('.header__menu-button').toggleClass('active');
+        $('.header__mobileMenu').toggleClass('active');
+        if($('.header__menu-button').hasClass('active')){
+            $('.header').addClass('black');
+        } else {
+            $('.header').removeClass('black');
+        }
     })
 })
 
