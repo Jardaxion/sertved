@@ -16,6 +16,10 @@ $(document).ready(() => {
     IMask(document.getElementById('phoneModal'), {
         mask: '+{7} (000) 000-00-00',
     });
+    
+    IMask(document.querySelector('.phone2'), {
+        mask: '+{7}-000-000-00-00',
+    });
 
     //Отслеживание измения url для назначения выбранного пункта в heder
     window.addEventListener('hashchange', function(e) {
@@ -63,26 +67,30 @@ $(document).ready(() => {
         }
 
     })
+    $('.modal__exit').on('click', () => {
+        closeModal();
+    })
 
-    $('.modal__form').on('click', (e) => {
+    $('.modal__form').on('submit', (e) => {
         e.preventDefault();
 
         axios.post('/email.php',{
-            name: $('#nameModal').val(),
-            phone: $('#phoneModal').val()
+            "name": $('#nameModal').val(),
+            "phone": $('#phoneModal').val()
         }).then(() => {
             closeModal();
             openModal('thanks');
         });
     })
 
-    $('.goZayv__right').on('click', (e)=>{
+    $('.goZayv__right').on('submit', (e)=>{
         e.preventDefault();
 
         axios.post('/email.php',{
-            name: $('#name').val(),
-            phone: $('#phone').val()
-        }).then(() => {
+            "name": $('#name').val(),
+            "phone": $('#phone').val()
+        }).then((res) => {
+            console.log(res);
             openModal('thanks');
         });
     })
